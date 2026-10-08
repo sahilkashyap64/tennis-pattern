@@ -5,9 +5,11 @@
 ### Start Here — Beginner Roadmap
 
 Seven interactive lessons introduce tennis rules, court markings, scoring,
-strokes, shot selection, and basic strategy. Each lesson includes a quick
-quiz, and the roadmap ends with a visual decision flowchart for choosing a
-response to the ball.
+strokes, shot selection, and basic strategy. Learn serving and receiving,
+games and sets, basic grips, footwork, recovery, and court etiquette. Each
+lesson includes optional deeper explanations, a simple practice exercise,
+and a quick quiz. The roadmap ends with a visual decision flowchart for
+choosing a response to the ball.
 
 ### Tennis Dictionary
 

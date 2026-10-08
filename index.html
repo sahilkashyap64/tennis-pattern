@@ -442,15 +442,138 @@ document.addEventListener('keydown',e=>{if(appView!=='arena')return;if(e.ctrlKey
  const k='QWEASD'.indexOf(e.key.toUpperCase());if(k>=0&&!answered&&!done){choose(k);return;}if(e.key==='Enter'&&answered)next();
 });
 // ─── BEGINNER ACADEMY: learn, recognize, recall, then compete ───
-const COURT_GUIDE=`<div class="starter-illustration"><svg viewBox="0 0 500 230" role="img" aria-label="Simple tennis court: far baseline at top, net in the middle, near baseline at the bottom, service boxes on either side of the centre line"><rect x="124" y="14" width="250" height="202" rx="4" fill="#286b58" stroke="#dbf0d9" stroke-width="2"/><path d="M135 22H364V208H135 M135 81H364 M135 149H364 M249.5 81V149" stroke="#e6f7dd" stroke-width="2" fill="none"/><rect x="111" y="110" width="276" height="8" rx="3" fill="#091d1c" stroke="#e7f9da"/><path d="M250 14V22M250 208V216" stroke="#e6f7dd" stroke-width="2"/><g fill="#e6fbce" font-size="11" text-anchor="middle"><text x="250" y="13">FAR BASELINE</text><text x="250" y="229">YOUR BASELINE</text><text x="182" y="103">service</text><text x="182" y="116">box</text><text x="315" y="103">service</text><text x="315" y="116">box</text></g><g fill="#d8f9b7" font-size="12" font-weight="700"><text x="390" y="120">← NET</text><text x="392" y="34">← Side</text><text x="405" y="48">line</text></g></svg></div>`;
+const COURT_GUIDE=`<figure class="starter-illustration"><svg viewBox="0 0 500 310" role="img" aria-label="Court map showing baselines, inner singles sidelines, outer doubles alleys, service lines, four service boxes, the centre mark and the net"><rect x="160" y="34" width="180" height="232" fill="#286b58" stroke="#dbf0d9" stroke-width="2"/><path d="M180 34V266M320 34V266M180 88H320M180 212H320M250 88V212M250 34V41M250 259V266" stroke="#e6f7dd" stroke-width="2" fill="none"/><path d="M145 150H355" stroke="#0e2820" stroke-width="7"/><path d="M145 148H355" stroke="#e6f7dd" stroke-width="2"/><g fill="#e6fbce" font-size="16" text-anchor="middle"><text x="250" y="20">Far baseline</text><text x="250" y="294">Your baseline</text><text x="215" y="119">Service</text><text x="215" y="134">box</text><text x="285" y="119">Service</text><text x="285" y="134">box</text><text x="215" y="181">Service</text><text x="215" y="196">box</text><text x="285" y="181">Service</text><text x="285" y="196">box</text></g><g stroke="#a9c995" stroke-width="1" fill="none"><path d="M330 62H356"/><path d="M355 150H373"/><path d="M320 212H354"/><path d="M250 263L348 275"/><path d="M180 196H137"/></g><g fill="#d8f9b7" font-size="14"><text x="362" y="66">Doubles alley</text><text x="381" y="154">Net</text><text x="360" y="216">Service line</text><text x="354" y="279">Centre mark</text><text x="129" y="192" text-anchor="end">Singles</text><text x="129" y="207" text-anchor="end">sideline</text></g></svg><figcaption>Singles uses the inner sidelines. A rally can land beyond the service line; a serve cannot.</figcaption></figure>`;
 const FOUNDATION=[
- {icon:'🎾',title:'What is tennis?',short:'The goal & the rally',tag:'FIRST CONTACT',intro:'Two players (singles) hit a ball over the net. Keep the ball in the other side of the court and make it difficult to return.',points:[['🎯','The aim','Send the ball across the net and inside the court lines.'],['↩️','The return','The other player can hit before a bounce or after one bounce.'],['❌','How points end','An out ball, a ball into the net, or a second bounce loses the rally.'],['🏁','The big idea','You win by making fewer mistakes and creating difficult replies.']],memory:['🎬','Imagine volleyball with a bounce coupon.','You have a one-bounce coupon to use on each shot. Two bounces? Coupon expired.'],quiz:['Which ball is still playable?', ['One that bounced once on your side','One that bounced twice','One that landed outside the singles lines'],0,'One bounce is allowed. A second bounce ends the point.']},
- {icon:'🗺️',title:'Meet the court',short:'Know where you stand',tag:'COURT GPS',intro:'The lines are your tennis map. In our game, you stand at the bottom of the court and your opponent is at the top.',points:[['📏','Baseline','The far back line at each end of the singles court.'],['🕸️','Net','The barrier you must send the ball over.'],['📦','Service box','A rectangular area a serve must land in, diagonally opposite the server.'],['📐','Singles sideline','The side boundary for one-versus-one play.']],visual:'court',memory:['🏠','BASE = back of the house; BOX = serve delivery.','You stand at your back door (baseline). A serve is a parcel delivered into the diagonal box.'],quiz:['Where must a legal serve land?', ['Anywhere in the opposite half','The diagonally opposite service box','Behind the opposite baseline'],1,'A serve must clear the net and land in the diagonally opposite service box.']},
- {icon:'🏆',title:'Score a point',short:'Love, 15, 30, 40',tag:'SCOREBOARD',intro:'Tennis uses unusual words for a simple system. Win rallies to win games, win enough games to take a set.',points:[['0️⃣','Love','Love means zero. “15–love” means the server leads 15–0.'],['🔢','Point sequence','The first three won points are called 15, 30, and 40.'],['🤝','Deuce','At 40–40 you need two points in a row to win the game.'],['🚩','Advantage','After deuce, one point ahead is advantage. Win the next point to win the game.']],visual:'score',memory:['🍰','LOVE is empty; 15–30–40 is the cake staircase.','Climb the 15, 30, 40 stairs. If both reach 40, race two stairs ahead.'],quiz:['It’s 40–40. How do you win the game?', ['Win one more point','Win two points in a row','You immediately start a new game'],1,'At deuce, you need two consecutive points: advantage, then game.']},
- {icon:'🏸',title:'Know the shots',short:'The five core families',tag:'TOOLBOX',intro:'Different situations need different tools. Start with the simple families; the glossary teaches advanced variations.',points:[['🚀','Serve','Starts the point. Hit diagonally into the opposite service box.'],['↔️','Groundstroke','A forehand or backhand usually hit after the bounce.'],['🧱','Volley','Hit the ball before it bounces, often near the net.'],['🌈','Lob','Send a high ball over an opponent, often to buy time.'],['☂️','Overhead','Hit a high ball above your head, typically with an upward-reached striking position.'],['🪄','Drop shot','A soft, short shot that lands close to the other side of the net.']],memory:['🧰','Think TOOLBOX: Launch, Rally, Catch, Rainbow, Tap.','Serve launches, groundstroke rallies, volley catches in the air, lob draws a rainbow, drop makes a gentle tap.'],quiz:['Your opponent hits a high ball and you strike it before it bounces. What shot family is that?', ['Overhead','Groundstroke','Serve'],0,'That is an overhead. You can also volley a high ball, but an overhead uses an above-the-head action.']},
- {icon:'🚦',title:'Read the situation',short:'Red, yellow or green?',tag:'TRAFFIC LIGHT',intro:'The smartest shot depends on whether you are under pressure, neutral, or have an easy attacking ball. Balance and time are the clues.',points:[['🔴','RED · Rescue','Stretched, late or off balance? Hit higher and safer, then recover.'],['🟡','YELLOW · Rally','Balanced but nothing easy? Keep good depth and a safe target.'],['🟢','GREEN · Go','Comfortable short ball? Move forward and aim at useful space.'],['👟','Recover','After every shot, move toward a smart ready position for the reply.']],memory:['🚥','RED = Rescue · YELLOW = Rally · GREEN = Go.','Picture a giant traffic light hanging above the net. Let your feet—not your ego—choose its color.'],quiz:['You are sprinting wide and can barely reach a deep ball. What is your mission?', ['Try a flat winner on the line','Hit safely with height, then recover','Rush to the net immediately'],1,'You are in RED. Survive the shot and regain balance first.']},
- {icon:'🎯',title:'Aim safely',short:'Margin beats miracles',tag:'SHOT COMPASS',intro:'Beginners win more by choosing repeatable targets than by trying to paint the lines. The safest shot is often deep crosscourt or deep middle.',points:[['📐','Crosscourt','Diagonal shot. Often a safer rally direction because the net is lower in the middle and the court is longer diagonally.'],['📍','Down the line','A straighter shot near your side. Useful when you are well balanced; risky when stretched.'],['🧲','Depth','A deep ball lands toward the opponent’s baseline and often keeps them back.'],['🛟','Margin','Aim comfortably inside the lines and well above the net on neutral baseline shots.']],memory:['🛟','SAFE = Space from lines · Arc over net · Feet set · Exit and recover.','A tennis ball wearing a life jacket refuses to touch the lines.'],quiz:['You receive a deep crosscourt ball and are not attacking. Which is usually the safer reply?', ['Try to touch the sideline down the line','Return deep crosscourt','Hit the ball straight up'],1,'Staying crosscourt is a reliable default while you are neutral.']},
- {icon:'♟️',title:'Learn a pattern',short:'Cue → plan → shots',tag:'TACTICAL VISION',intro:'A pattern is a repeatable sequence, not a magical single shot. Like chess motifs, it becomes easier when you name the clue and rehearse a small plan.',points:[['👁️','SPOT','Notice an opponent pulled wide, pinned deep, or moving forward.'],['🧠','PLAN','Decide: defend safely, keep them moving, or use the open space.'],['🎾','PLAY','Execute the first shot and anticipate the next reply.'],['🔄','REPEAT','Use a short phrase and a funny mental picture to make it automatic.']],memory:['🍿','PULL → POUNCE: open the door, then walk through it.','Picture a door opening when your serve pulls the receiver wide. Your next ball walks through the door.'],quiz:['Your wide serve pulls the receiver off court. What should you look for next?', ['The newly open side of the court','Only the exact same corner forever','A random trick shot'],0,'The first shot creates space; the next shot uses it. That is the essence of a pattern.']}
+ {
+  icon:'🎾',title:'What is tennis?',short:'Rules & your first rally',tag:'FIRST CONTACT',
+  intro:'Tennis is a game of taking turns: send the ball into the opposite court and return it before its second bounce. Your first goal is a controlled rally, not a powerful winner.',
+  points:[
+   ['🎯','Singles or doubles','Singles is one player against one. Doubles is two players on each team, using a wider court for rallies.'],
+   ['↩️','One bounce to work with','During a rally you may hit before the bounce or after one bounce. The return of serve must bounce first.'],
+   ['📏','A line counts as in','If the ball touches the correct boundary line, it is in. Only a ball landing completely outside is out.'],
+   ['🏁','How a point ends','You lose the point if your shot fails to reach the opposite court, lands out, or you let the ball bounce twice.']
+  ],
+  details:[
+   ['What to bring','Start with a racket you can swing comfortably, tennis balls, water, and tennis shoes made for sideways movement. You do not need professional equipment to learn a steady rally.'],
+   ['A good first warm-up','Begin with gentle hitting from near the service lines. Give your partner an easy ball rather than trying to beat them during the warm-up.'],
+   ['Share the court well','Wait for the other player to be ready. Clear loose balls before playing, and wait until a neighbouring rally finishes before walking behind its players. Call balls on your side promptly; if you are unsure, give the opponent the benefit of the doubt.']
+  ],
+  practice:{title:'Keep a cooperative rally going',setup:'With a partner, start near the service lines.',steps:['Feed a gentle ball, let it bounce, and send it back with a short, smooth swing.','Count each successful shot together. Aim for five shots before increasing the distance.','If the rally breaks down, slow the ball down and start again.']},
+  memory:['🎬','One bounce is your window.','Picture a small window opening when the ball bounces. Meet the ball before that window closes with the second bounce.'],
+  quiz:['Which ball is still playable?', ['One that bounced once on your side','One that bounced twice','One that landed outside the singles lines'],0,'One bounce is allowed. Return the ball before the second bounce.']
+ },
+ {
+  icon:'🗺️',title:'Meet the court',short:'Lines, boxes & serving',tag:'COURT GPS',
+  intro:'The court lines do different jobs. The baseline and sidelines define a rally; the service boxes define where the serve must land.',
+  points:[
+   ['📏','Baseline and centre mark','The baseline is the back boundary. To serve, stand behind it and on the correct side of the small centre mark.'],
+   ['📐','Singles and doubles sidelines','The inner sidelines are for singles. The narrow strips outside them are doubles alleys, used in doubles rallies.'],
+   ['📦','Service boxes','The net, service line and centre service line make two boxes on each side. A serve must land in the diagonally opposite box.'],
+   ['↔️','Right, then left','Start each ordinary game serving from your right-hand half. After each point, switch halves. The same player serves the whole game.']
+  ],
+  visual:'court',
+  details:[
+   ['Two chances to serve','If your first serve is a fault, take a second serve from the same side. Missing both is a double fault and loses the point. Until you strike the serve, keep your feet off the baseline and the court inside it.'],
+   ['A net touch is not always the same thing','Under standard rules, a serve that touches the net and lands in the correct box is a let: replay that serve. A second-serve let stays a second serve. During a rally, a ball may touch the net and remain playable if it lands in.'],
+   ['Where to receive','Face the server with your racket ready. Start near the baseline and adjust to the pace of the serve. Let the serve bounce before returning it; the receiver cannot volley it. Doubles uses the same service boxes as singles.']
+  ],
+  practice:{title:'Walk through the first two points',setup:'You can do this without hitting a ball.',steps:['Find the baseline, singles sidelines, service line and centre mark.','Stand behind the right half of the baseline and point to the diagonal service box.','Move behind the left half for the next point and point to the other diagonal box.']},
+  memory:['🏠','Baseline = back door. Service box = delivery address.','A serve is a parcel for one diagonal box. Once the rally starts, the whole valid court is available.'],
+  quiz:['Where must a legal serve land?', ['Anywhere in the opposite half','The diagonally opposite service box','Behind the opposite baseline'],1,'The first bounce of a serve must be inside or on a line of the diagonally opposite service box.']
+ },
+ {
+  icon:'🏆',title:'Keep score',short:'Points → games → sets',tag:'SCOREBOARD',
+  intro:'Keep three levels separate: points build a game, games build a set, and sets decide the match. Learn standard scoring first, then agree on any shorter format before playing.',
+  points:[
+   ['0️⃣','Love, 15, 30, 40','Love means zero. Your first, second and third points are 15, 30 and 40. Four points win a standard game if you lead by two.'],
+   ['📣','Server first','Call the score before serving, with the server’s score first. If the server has won one point and the receiver two, it is 15–30.'],
+   ['🤝','Deuce and advantage','At 40–40, the score is deuce. Win the next point for advantage; win another for the game. Lose it and you return to deuce.'],
+   ['🔄','A new game','After an ordinary game, the other player serves. The point score resets to love–love; the game score in the set does not.']
+  ],
+  visual:'score',
+  details:[
+   ['Winning a set','In a common tie-break set, reach six games with a lead of two, such as 6–4. At 5–5, 7–5 can win it. At 6–6, play a tie-break, and its winner takes the set 7–6.'],
+   ['A standard tie-break','Count 1, 2, 3 instead of 15, 30, 40. Reach seven points and lead by two. The first server serves one point; the other serves two; then keep alternating two-point turns. Some formats use a different target, so agree on it first.'],
+   ['Finishing the match','A common match is best of three sets: the first player to win two sets wins. In ordinary games, change ends after the first game and then after every two games. In a standard tie-break, change ends after every six points.']
+  ],
+  practice:{title:'Call a pretend game aloud',setup:'Take turns being the server and the scorekeeper.',steps:['Start at love–love. Give the server a point, then the receiver two: call 15–30.','Imagine both players reaching 40: call deuce, then advantage to whoever wins next.','Say what happens if the player with advantage wins, and what happens if they lose.']},
+  memory:['🪜','Points are steps. Games are floors. Sets are the building.','Do not mix the point staircase with the game count. Deuce needs two steps in a row; a set needs its own game tally.'],
+  quiz:['It is 40–40 in a standard game. How do you win?', ['Win one more point','Win two points in a row','Immediately start a new game'],1,'From deuce, win advantage and then the next point. Losing the advantage point returns the score to deuce.']
+ },
+ {
+  icon:'🏸',title:'Know the shots',short:'Six useful shot families',tag:'TOOLBOX',
+  intro:'Recognise the basic strokes before worrying about fancy variations. A smooth swing and clean contact matter more than hitting hard.',
+  points:[
+   ['🚀','Serve','Start the point by striking a released ball before it bounces. Aim into the diagonal service box; placement comes before power.'],
+   ['↔️','Groundstroke','A forehand or backhand after the bounce. The forehand uses the racket-hand side; the backhand uses the opposite side, with one or two hands.'],
+   ['🧱','Volley','Meet the ball before it bounces, usually near the net. Use a compact action rather than a long groundstroke backswing.'],
+   ['🌈','Lob','Lift the ball high, often over a player at the net. It can also give you time to recover when you are under pressure.'],
+   ['☂️','Overhead','Strike a high ball above your head with a serve-like action. First move into position; do not swing while falling away.'],
+   ['🪄','Drop shot','A soft shot intended to land close to the net. Save it for a comfortable ball when the opponent is far back.']
+  ],
+  details:[
+   ['Start with a comfortable grip','An eastern forehand grip feels roughly like shaking hands with the handle. A continental grip is useful for serves and volleys. Your hand position can change between strokes; you do not need one grip for every shot.'],
+   ['Prepare, meet, finish','Turn your shoulders as you recognise the incoming shot. Make space beside your body, meet the ball slightly in front, and let the swing finish smoothly. Start slowly enough to keep your balance.'],
+   ['Understand spin','Topspin makes the ball dip and can help a rally shot clear the net with margin. Slice uses backspin and changes its flight and bounce. Learn reliable contact first, then add spin gradually.']
+  ],
+  practice:{title:'Rehearse the stroke without a ball',setup:'Find enough space for a slow swing.',steps:['Hold the racket in front and turn your shoulders toward an imaginary forehand.','Swing gently through a contact point beside and slightly in front of you.','Finish in balance, return to ready, and repeat on the backhand side.']},
+  memory:['🧰','Six tools, six jobs.','Serve starts; groundstroke rallies; volley meets the air; lob goes high; overhead reaches up; drop lands short.'],
+  quiz:['Your opponent sends a lob. You reach up and use a serve-like swing above your head. What is the shot?', ['Overhead','Groundstroke','Serve'],0,'That is an overhead. The high contact and serve-like action distinguish it from a groundstroke or a compact high volley.']
+ },
+ {
+  icon:'🚦',title:'Read the situation',short:'Get ready, then decide',tag:'TRAFFIC LIGHT',
+  intro:'Good decisions start with good preparation. Watch the ball, get your feet moving, and choose a plan that fits the time and balance you actually have.',
+  points:[
+   ['👟','Ready position','Face the opponent, soften your knees, and hold the racket in front. Keep your feet ready to move rather than standing flat-footed.'],
+   ['🔴','RED · Rescue','Late, stretched or off balance? Use a forgiving shot with height and margin, then work back into the point.'],
+   ['🟡','YELLOW · Rally','Balanced, but facing a deep or awkward ball? Keep a steady rally with depth instead of forcing an attack.'],
+   ['🟢','GREEN · Go','A short ball you can reach in balance? Move forward, use available space, and prepare for the reply.']
+  ],
+  details:[
+   ['Read early, move early','Watch the ball leave the opponent’s racket. Turn toward the correct side before it arrives, and use small adjustment steps to find a comfortable contact distance.'],
+   ['Reset as the opponent hits','A small split step is a brief, balanced hop timed around the opponent’s contact. Land ready to push either way. Practise the timing gently; it is a reset, not a big jump.'],
+   ['Recover for the next ball','After hitting, move toward a position that covers the likely replies. Near the middle is a useful beginner starting point, but your shot and the opponent’s position change where you should recover.']
+  ],
+  practice:{title:'Move, decide, recover',setup:'Ask a partner to point left or right; no ball is needed.',steps:['Start in ready position. Turn and take a few controlled steps toward the indicated side.','Say red, yellow or green based on whether you can stop in balance.','Make a slow shadow swing and return to a useful ready position.']},
+  memory:['🚥','RED = Rescue · YELLOW = Rally · GREEN = Go.','Picture a traffic light over the net. Your time and balance choose the colour before your racket chooses the shot.'],
+  quiz:['You are sprinting wide and can barely reach a deep ball. What is your mission?', ['Try a flat winner on the line','Hit safely with height, then recover','Rush to the net immediately'],1,'You are under pressure. Give the ball room over the net and inside the lines, then regain your position.']
+ },
+ {
+  icon:'🎯',title:'Aim safely',short:'Height, depth & direction',tag:'SHOT COMPASS',
+  intro:'Choose a large, repeatable target. Keep the ball in play first; add direction and depth as your control improves.',
+  points:[
+   ['📐','Crosscourt','A diagonal rally shot gives you more court length and often crosses near the lower middle of the net. It is a useful neutral default.'],
+   ['📍','Down the line','A shot along the sideline can use open space, but leaves less room for error. Change direction when you have time and balance.'],
+   ['🧲','Depth','A ball landing toward the opponent’s baseline can keep them back. Aim well inside the baseline so depth does not become a long miss.'],
+   ['🛟','Net and line margin','Give neutral rally shots clearance over the net and space inside the lines. A repeatable target is more useful than a perfect-looking winner.']
+  ],
+  details:[
+   ['Use pace you can control','A harder ball also gives you less time to recover after the reply. If you keep missing, lower the pace and rebuild a smooth rhythm before adding speed.'],
+   ['Make the return simple','A fast serve gives little preparation time. Let it bounce, turn your shoulders and use a shorter swing. A controlled, deep return can start a neutral rally without needing a winner.'],
+   ['Know what a short ball changes','A short ball may let you step inside the court and attack. A drop shot, however, is a deliberate short placement for a suitable situation, not a default answer to every short ball.']
+  ],
+  practice:{title:'Aim at a patch, not a line',setup:'Use a broad imaginary target well inside the opposite court.',steps:['Ask a partner to feed easy balls and send five controlled shots crosscourt.','Count balls landing in the target area, not how hard you hit them.','Move the target deeper only when you can keep the same balance and net clearance.']},
+  memory:['🛟','SAFE = Space from lines · Arc over net · Feet set · Exit and recover.','Imagine a roomy landing pad, not a tightrope along the sideline.'],
+  quiz:['You receive a deep crosscourt ball and are not attacking. Which is usually the safer reply?', ['Try to touch the sideline down the line','Return deep crosscourt','Hit the ball straight up'],1,'Returning crosscourt with margin is a reliable neutral choice. Avoid forcing a direction change from a difficult ball.']
+ },
+ {
+  icon:'♟️',title:'Learn a pattern',short:'Build a point, not one shot',tag:'TACTICAL VISION',
+  intro:'A pattern connects a situation, a plan and the next shot. You are learning to create a useful reply, then recognise what to do with it.',
+  points:[
+   ['👁️','Spot the cue','Look for an opponent pulled wide, kept deep, or moving toward the net. Check your own balance before acting.'],
+   ['🧠','Choose one plan','Stay in the rally when pressured. Move the opponent when neutral. Use space when a comfortable opportunity arrives.'],
+   ['🎾','Expect another ball','Your first shot is often the setup, not the finish. Recover and watch what it makes the opponent do.'],
+   ['🔄','Practise one sequence','Repeat a simple two-shot plan at comfortable pace before mixing it into live points.']
+  ],
+  details:[
+   ['Serve, then use the space','A wide serve can move the receiver out of position. If their return gives you time, aim your next controlled shot into the available court. A difficult return may still require a safe rally ball.'],
+   ['Approach, then get ready','A suitable short ball can let you approach the net. Follow the approach forward, reset as the opponent hits, and prepare for a pass or lob rather than assuming the point is over.'],
+   ['Choose a useful practice goal','Measure something you can repeat: five controlled returns, a balanced recovery, or recognising a short ball. Between points, choose one simple cue and start again instead of replaying the last mistake.']
+  ],
+  practice:{title:'Make space, then look for it',setup:'Start with a cooperative partner feed.',steps:['Send a comfortable ball to one side and let your partner return it.','Notice whether space opens up and whether you have time to use it.','Play the second shot with control, recover, and describe the cue you noticed. Then try the animated example below.']},
+  memory:['🍿','PULL → POUNCE: create space, then use it.','Picture an opening appearing after the first shot. Step through only if the next ball gives you time and balance.'],
+  quiz:['Your wide serve pulls the receiver off court and their return is comfortable. What should you look for next?', ['The newly open side of the court','Only the exact same corner forever','A random trick shot'],0,'The serve created space. Use it with a controlled next shot, then stay ready for another reply.']
+ }
 ];
 const DICTIONARY=[
  ['Court','Baseline','The back boundary at either end of the court.','You rally from near the baseline; you stand behind it to serve.','BASE = back of the house.'],
@@ -553,7 +676,9 @@ function renderStarter(){const done=foundations(),n=Object.values(done).filter(B
  $('starterPill').textContent=`STEP ${starterStep+1} / ${FOUNDATION.length}`;$('starterStatus').textContent=done[starterStep]?'✓ LEARNED':p.tag;
  const pts=p.points.map(it=>`<div class="starter-point"><span aria-hidden="true">${it[0]}</span><b>${esc(it[1])}</b><p>${esc(it[2])}</p></div>`).join('');
  const visual=p.visual==='court'?COURT_GUIDE:p.visual==='score'?'<div class="starter-illustration"><div class="label">POINTS IN ONE GAME</div><div class="score-sample"><span>LOVE</span><span>15</span><span>30</span><span>40</span><span>GAME</span></div><p class="microtext">At 40–40, take two points in a row to finish the game.</p></div>':'';
- $('starterBody').innerHTML=`<h2>${esc(p.title)}</h2><p class="intro">${esc(p.intro)}</p>${visual}<div class="starter-points">${pts}</div><div class="memory-takeaway"><span>${p.memory[0]}</span><div><b>${esc(p.memory[1])}</b><p>${esc(p.memory[2])}</p></div></div>`;
+ const detail=p.details?.length?`<details class="starter-details"><summary>Go a little deeper<span>Useful details before you play</span></summary><div class="starter-detail-body">${p.details.map(([title,text])=>`<section><h3>${esc(title)}</h3><p>${esc(text)}</p></section>`).join('')}</div></details>`:'';
+ const practice=p.practice?`<section class="starter-drill" aria-label="Practice exercise"><div class="overline">TRY THIS NEXT</div><h3>${esc(p.practice.title)}</h3><p>${esc(p.practice.setup)}</p><ol>${p.practice.steps.map(step=>`<li>${esc(step)}</li>`).join('')}</ol></section>`:'';
+ $('starterBody').innerHTML=`<h2>${esc(p.title)}</h2><p class="intro">${esc(p.intro)}</p>${visual}<div class="starter-points">${pts}</div>${detail}<div class="memory-takeaway"><span>${p.memory[0]}</span><div><b>${esc(p.memory[1])}</b><p>${esc(p.memory[2])}</p></div></div>${practice}`;
  $('starterQuestion').innerHTML=`<div class="label">QUICK CHECK · CHOOSE ONE</div><h3>${esc(p.quiz[0])}</h3><div class="quiz-choices">${p.quiz[1].map((answer,i)=>`<button type="button" data-quiz="${i}" class="quiz-choice ${starterAnswer===i?(i===p.quiz[2]?'good':'bad'):''}" ${starterAnswer===p.quiz[2]?'disabled':''}>${String.fromCharCode(65+i)} · ${esc(answer)}</button>`).join('')}</div>`;
  const msg=starterAnswer===null?(done[starterStep]?'✓ Previously completed. You can review or continue.':'Choose an answer to lock in this step.'):(starterAnswer===p.quiz[2]?'✓ Correct! '+p.quiz[3]:'Not quite. Look at the clues above and try again.');
  $('starterFeedback').textContent=msg;$('starterFeedback').classList.toggle('fail',starterAnswer!==null&&starterAnswer!==p.quiz[2]);$('starterPrev').disabled=starterStep===0;
