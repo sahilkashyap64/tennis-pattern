@@ -29,6 +29,18 @@
 @media(max-width:720px){.app-nav{gap:5px}.app-tab{font-size:11px;padding:8px 4px;gap:3px;flex-direction:column}.app-tab span{font-size:17px}.app-tab small{font-size:9px;line-height:1.2;margin:0;min-height:22px}.learn-hero{padding:23px 16px;flex-direction:column;align-items:stretch}.learn-hero-score{flex:0 0 auto;padding:10px 15px;display:grid;grid-template-columns:75px 1fr;align-items:center;column-gap:8px;text-align:left}.learn-hero-score strong{font-size:30px;grid-row:span 3}.learn-hero-score .starter-meter{margin:3px 0}.learn-layout,.memory-layout{grid-template-columns:minmax(0,1fr);padding:12px}.route-panel,.starter-panel{padding:15px}.route-list{display:flex;flex-direction:row;gap:8px;overflow-x:auto;margin-top:13px;padding:4px 1px 12px}.route-step{margin:0;min-width:150px;flex:0 0 150px;flex-direction:column;align-items:flex-start;border:1px solid #44695c;border-radius:12px;padding:9px;min-height:127px}.route-step:before{display:none}.route-ico{width:34px;height:34px;flex:0 0 34px;font-size:19px}.route-step b{font-size:11px}.route-step small{font-size:9px}.route-check{position:absolute;right:9px;top:12px}.route-step.current{border-color:var(--lime)}.decision-section{margin:0 12px 12px;padding:14px}.mobile-map-note{display:block}.starter-panel h2{font-size:24px}.section-hero{padding:25px 17px}.dictionary-grid{padding:10px;gap:8px}.dictionary-tools{padding:15px}.memory-layout{gap:9px}.pattern-memory{padding:12px;flex-wrap:wrap}.pattern-memory button{margin-left:55px}}
 @media(max-width:500px){.dictionary-grid{grid-template-columns:1fr}.starter-points{grid-template-columns:1fr 1fr}.starter-point{min-height:106px;padding:9px}.starter-controls{grid-template-columns:100px 1fr}.decision-choices{gap:12px}.choice-chip{font-size:11px;padding:8px}.recall-card{padding:18px;min-height:300px}.memory-lesson,.recall-panel{padding:15px}.section-hero h1{font-size:27px}.journey-meta span{font-size:10px}}
 
+
+/* Animated shot visualizer */
+.replay-studio{margin:3px 13px 13px;padding:13px;border-radius:13px;background:#0b2228;border:1px solid #447064}
+.replay-heading,.flight-view-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.replay-step{font-size:10px;font-weight:800;color:#b3dac6}
+.replay-buttons{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:10px 0 12px}.replay-buttons button{border-radius:9px;min-height:37px;font-size:11px;font-weight:850;padding:8px 11px}
+.replay-main{background:var(--lime);border:1px solid var(--lime);color:#142c24;flex:1;min-width:147px}.replay-main:disabled{background:#36534c;border-color:#486c60;color:#c0ccbf;cursor:default}
+.replay-alt{background:#1b423f;border:1px solid #5c8374;color:#e0f4df}.replay-alt:hover{background:#31534b}
+.replay-speed{display:flex;align-items:center;gap:5px;font-size:10px;color:#bed2c7;margin-left:auto;white-space:nowrap}.replay-speed select{border:1px solid #517869;border-radius:7px;background:#193a3c;color:#f1f7ea;padding:5px 6px;font-size:11px}
+.flight-view{border-radius:9px;background:linear-gradient(180deg,#193a40,#0e292e);padding:9px 12px 3px;border:1px solid #315950}.flight-view-heading strong{font-size:10px;color:#e9fbc0;letter-spacing:1.1px}.flight-view-heading span{font-size:10px;color:#b4d6ca}.flight-view svg{width:100%;height:auto;display:block;max-height:132px}
+.playback-status{font-size:12px;line-height:1.45;min-height:18px;margin:10px 1px 6px;color:#dbf0d4;font-weight:750}.playback-disclaimer{color:#90b5aa;line-height:1.45;font-size:10px;margin:0 1px}.flight-trace{fill:none;stroke:#d8f680;stroke-width:3.2;stroke-linecap:round;stroke-dasharray:8 5}.flight-trace.return{stroke:#8bd5e8;stroke-width:2.8}.flight-complete{fill:none;stroke:#d0f68a;stroke-width:2;opacity:.45;stroke-dasharray:6 7}.flight-complete.return{stroke:#85cfe2;opacity:.4}.flight-complete.bad{stroke:#ffa786}
+@media(max-width:520px){.replay-studio{margin:3px 9px 10px;padding:11px}.replay-buttons{gap:6px}.replay-buttons button{min-height:40px}.replay-speed{margin-left:0}.flight-view svg{max-height:109px}}
+@media(prefers-reduced-motion:reduce){.flight-trace,.flight-complete{stroke-dasharray:none}}
 </style>
 </head>
 <body>
@@ -58,7 +70,7 @@
    <g class="flow-box" data-box="question"><rect x="501" y="157" width="293" height="66" rx="14"/><text x="647" y="185">IS IT A SHORT EASY BALL?</text><text class="flow-sub" x="647" y="207">Can you move forward?</text></g><text x="511" y="251" class="flow-label">NO</text><text x="760" y="251" class="flow-label">YES</text>
    <g class="flow-box" data-box="yellow"><rect x="321" y="263" width="256" height="62" rx="14"/><text x="449" y="288">🟡 RALLY</text><text class="flow-sub" x="449" y="307">Deep, safe, repeat</text></g>
    <g class="flow-box" data-box="green"><rect x="658" y="263" width="229" height="62" rx="14"/><text x="773" y="288">🟢 ATTACK</text><text class="flow-sub" x="773" y="307">Use the open court</text></g>
-  </svg></div><p class="mobile-map-note">↔ Swipe left and right to see the whole decision map.</p><p id="decisionResult" class="decision-result" aria-live="polite"></p>
+  </svg></div><p class="mobile-map-note">↔ Swipe left and right to see the whole decision map.</p><button type="button" class="ghost" data-watch-beginner="true" style="margin:8px 0 4px">▶ Watch a real shot sequence on the court</button><p id="decisionResult" class="decision-result" aria-live="polite"></p>
  </section>
 </section>
 <section id="viewGlossary" class="learn-view hide" aria-label="Tennis terms glossary"><div class="section-hero"><div class="overline">TENNIS, TRANSLATED</div><h1>The no-confusion dictionary</h1><p>Everything a first-time player hears on court, explained in everyday English. Tap a term for an example and a memory hook.</p></div><div class="dictionary-tools"><input id="termSearch" class="search" type="search" placeholder="Search “deuce”, “volley”, “crosscourt”…" aria-label="Search tennis terms"><div id="termFilters" class="filter-pills"></div><strong id="termCount"></strong></div><div id="dictionary" class="dictionary-grid"></div></section>
@@ -87,13 +99,42 @@
     <path class="court-line" d="M112 201H408 M112 459H408 M260 201V330 M260 330V459 M252 72H268 M252 588H268"/>
     <g id="zones"></g>
     <g id="safeOverlay" class="hide" pointer-events="none"><line class="safe-guide" x1="178" y1="73" x2="178" y2="200"/><line class="safe-guide" x1="342" y1="73" x2="342" y2="200"/><line class="safe-guide" x1="112" y1="112" x2="408" y2="112"/><text x="260" y="105" text-anchor="middle" class="safetext">~6 FT INSIDE THE LINES</text></g>
-    <path id="movement" d="" class="movement hide" marker-end="url(#arrowhead)"/><path id="flight" class="flight hide" d=""/><circle id="ring" class="target-ring hide" cx="260" cy="160" r="16"/>
+    <g id="shotHistory" pointer-events="none"></g>
+    <path id="movement" d="" class="movement hide" marker-end="url(#arrowhead)"/>
+    <path id="flight" class="flight hide" d=""/>
+    <circle id="ring" class="target-ring hide" cx="260" cy="160" r="16"/>
+    <circle id="flightShadow" cx="260" cy="528" r="8" fill="#051f1d" opacity=".38" class="hide"/>
     <g id="opponent" transform="translate(260 134)"><circle r="18" fill="#ffa786" stroke="#ffe1c5" stroke-width="3"/><text class="person-label" y="1">OPP</text></g>
     <g id="player" transform="translate(260 550)"><circle r="18" fill="#defb76" stroke="#f5ffc5" stroke-width="3"/><text class="person-label" y="1">YOU</text></g>
     <circle id="ball" class="ball" r="7" cx="260" cy="528"/>
     <line x1="58" y1="330" x2="462" y2="330" stroke="#062b24" stroke-width="7"/><line x1="58" y1="327" x2="462" y2="327" stroke="#d7f6e3" stroke-width="2"/>
     <text x="260" y="30" text-anchor="middle" fill="#b7dac9" font-size="11" font-weight="850" letter-spacing="1.5">OPPONENT'S COURT</text><text x="260" y="636" text-anchor="middle" fill="#b7dac9" font-size="11" font-weight="850" letter-spacing="1.5">YOUR BASELINE</text>
-   </svg><div class="court-footer"><span><b>●</b> You</span><span style="color:#ffa786">● Opponent</span><label><input type="checkbox" id="safeToggle"> Show 6 ft safety guide</label></div>
+   </svg>
+   <div class="replay-studio">
+     <div class="replay-heading"><span class="overline">🎬 SHOT VISUALIZER</span><span id="playbackStep" class="replay-step">Ready to watch</span></div>
+     <div class="replay-buttons">
+       <button id="watchPattern" class="replay-main" type="button">▶ Watch full pattern</button>
+       <button id="replayShot" class="replay-alt hide" type="button">↻ Replay shot</button>
+       <button id="pausePlayback" class="replay-alt hide" type="button" aria-pressed="false">⏸ Pause</button>
+       <label class="replay-speed">Speed <select id="playbackSpeed" aria-label="Animation speed"><option value="0.65">0.65×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
+     </div>
+     <div class="flight-view" aria-label="Simplified side view of the ball trajectory over the net">
+       <div class="flight-view-heading"><strong>BALL HEIGHT</strong><span id="shotTypeLabel">Arc over net · bounce</span></div>
+       <svg id="sideCourt" viewBox="0 0 500 155" role="img" aria-label="Ball height through the air, net clearance and landing bounce">
+         <path d="M22 124 H481" stroke="#88a99d" stroke-width="2"/>
+         <path d="M245 124 V89" stroke="#e1f6ed" stroke-width="5"/>
+         <path d="M240 89 H250 M242 102 H248 M242 114 H248" stroke="#c5efe6" stroke-width="2"/>
+         <text x="247" y="145" text-anchor="middle" fill="#a6cfc4" font-size="12">NET</text>
+         <text x="23" y="145" fill="#c0d9ce" font-size="11">HIT</text>
+         <text id="sideLandingLabel" x="475" y="145" text-anchor="end" fill="#c0d9ce" font-size="11">LAND</text>
+         <path id="sideArc" d="M28 124 Q249 8 473 124" fill="none" stroke="#d7f989" stroke-width="3" stroke-dasharray="8 7" opacity=".65"/>
+         <circle id="sideBallShadow" cx="28" cy="124" r="7" fill="#081e1b" opacity=".6"/>
+         <circle id="sideBall" cx="28" cy="124" r="7" fill="#e9ff8d" stroke="#96b83d" stroke-width="1.5"/>
+       </svg>
+     </div>
+     <p id="playbackStatus" class="playback-status" aria-live="polite">Press Watch full pattern to see each shot travel, clear the net and bounce.</p>
+     <p class="playback-disclaimer">Training illustration: overhead court view shows direction; side view shows approximate height, not measured ball physics. Blue = illustrative opponent reply.</p>
+   </div><div class="court-footer"><span><b>●</b> You</span><span style="color:#ffa786">● Opponent</span><label><input type="checkbox" id="safeToggle"> Show 6 ft safety guide</label></div>
   </section>
   <div class="rightcol">
     <section class="info-card" aria-live="polite"><div class="overline" id="shotCounter">SHOT 1 OF 2</div><h2 id="situationTitle"></h2><p id="situationDescription"></p><div class="state-pills" id="situationTags"></div></section>
@@ -254,14 +295,99 @@ function listLessons(){const list=filtered();$('libraryCount').textContent=`${li
 }
 function fromPoint(s){return {x:112+296*s.from[0],y:s.from[1]};}
 function opponentPoint(s){return {x:112+296*s.opp[0],y:s.opp[1]};}
-function stopAnim(){if(anim!==null&&typeof cancelAnimationFrame==='function')cancelAnimationFrame(anim);anim=null;$('flight').classList.add('hide');$('ring').classList.add('hide');$('movement').classList.add('hide');}
-function showFlight(z,correct){const s=currentStep(),start=fromPoint(s),dest=ZONES[z];const x1=start.x,y1=start.y-20,x2=dest.x,y2=dest.y;
- const cx=(x1+x2)/2,cy=Math.min(y1,y2)-85;const f=$('flight');f.setAttribute('d',`M${x1} ${y1} Q${cx} ${cy} ${x2} ${y2}`);f.classList.remove('hide');f.classList.toggle('bad',!correct);
- $('ring').setAttribute('cx',dest.x);$('ring').setAttribute('cy',dest.y);$('ring').classList.toggle('bad',!correct);$('ring').classList.remove('hide');
- const opp=opponentPoint(s),oppEndX=opp.x+(dest.x-opp.x)*.55,oppEndY=opp.y+(dest.y-opp.y)*.32;
- const move=$('movement');move.setAttribute('d',`M${opp.x} ${opp.y} Q${(opp.x+oppEndX)/2} ${Math.min(opp.y,oppEndY)-28} ${oppEndX} ${oppEndY}`);move.classList.remove('hide');
- const ball=$('ball'),startTime=performance.now(),duration=590;const animate=time=>{let t=Math.min((time-startTime)/duration,1);t=1-(1-t)**2;const x=(1-t)**2*x1+2*(1-t)*t*cx+t*t*x2,y=(1-t)**2*y1+2*(1-t)*t*cy+t*t*y2;ball.setAttribute('cx',x);ball.setAttribute('cy',y);if(t<1)anim=requestAnimationFrame(animate);else anim=null;};anim=requestAnimationFrame(animate);
+
+// Time-based, user-controllable diagram animation. The side profile is intentionally illustrative.
+let playback=null, playbackFrame=null, playbackCounter=0;
+const flightSVGNS='http://www.w3.org/2000/svg';
+const clamp01=t=>Math.max(0,Math.min(1,t));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const pointAt=(a,b,t)=>({x:lerp(a.x,b.x,t),y:lerp(a.y,b.y,t)});
+function shotGeometry(shot,zone,reply=false){
+ const short=zone>=3 && !reply;
+ const end=short?356:472;
+ // Draw the same shot as a side-on arc; height is qualitative, not real-world units.
+ const heights={'Lob':113,'Topspin':84,'Drop':77,'Serve':72,'Slice':57,'Drive':70,'Volley':59,'Overhead':62,'Bounce smash':72};
+ return {end,peak:reply?62:(heights[shot]||72),name:reply?'Opponent reply':shot,short};
 }
+function sidePoint(geo,t){const x=lerp(27,geo.end,t),y=124-4*geo.peak*t*(1-t);return {x,y};}
+function setSideArc(geo,color='#d7f989'){
+ const path=$('sideArc'),c={x:(27+geo.end)/2,y:124-2*geo.peak};
+ path.setAttribute('d',`M27 124 Q${c.x} ${c.y} ${geo.end} 124`);
+ path.setAttribute('stroke',color);
+ const memoryArc={'Lob':'🌈 rainbow','Drop':'🪂 parachute','Slice':'🛩 low glider','Drive':'➜ arrow','Topspin':'🎢 topspin arc','Serve':'🚀 launch','Volley':'⚡ quick touch','Overhead':'🔨 hammer','Bounce smash':'🔨 after-bounce smash'};
+ $('shotTypeLabel').textContent=geo.name+' · '+(memoryArc[geo.name]||'↩ reply')+(geo.short?' · lands short':'');
+ $('sideLandingLabel').textContent=geo.short?'SHORT BOUNCE':'LAND';
+}
+function updateBall(a,b,t,geo,reply=false){
+ const pt=pointAt(a,b,t),side=sidePoint(geo,t);
+ $('ball').setAttribute('cx',pt.x.toFixed(2));$('ball').setAttribute('cy',pt.y.toFixed(2));
+ $('flightShadow').classList.remove('hide');$('flightShadow').setAttribute('cx',pt.x.toFixed(2));$('flightShadow').setAttribute('cy',pt.y.toFixed(2));
+ $('flightShadow').setAttribute('r',String(6+5*4*t*(1-t)));
+ $('sideBall').setAttribute('cx',side.x.toFixed(2));$('sideBall').setAttribute('cy',side.y.toFixed(2));
+ $('sideBall').setAttribute('fill',reply?'#9ee6ec':'#e9ff8d');
+ $('sideBallShadow').setAttribute('cx',side.x.toFixed(2));
+ const trail=$('flight');trail.setAttribute('d',`M${a.x.toFixed(2)} ${a.y.toFixed(2)} L${pt.x.toFixed(2)} ${pt.y.toFixed(2)}`);
+ trail.classList.remove('hide');trail.classList.toggle('bad',false);
+ trail.style.stroke=reply?'#8bd5e8':(playback&&playback.bad?'#ffa786':'#defb76');
+}
+function drawHistory(a,b,reply=false){const node=document.createElementNS(flightSVGNS,'path');node.setAttribute('d',`M${a.x} ${a.y} L${b.x} ${b.y}`);node.setAttribute('class',`flight-complete${reply?' return':playback&&playback.bad?' bad':''}`);$('shotHistory').appendChild(node);}
+function resetBallForStep(s){const a=fromPoint(s),b=opponentPoint(s);$('player').setAttribute('transform',`translate(${a.x} ${a.y})`);$('opponent').setAttribute('transform',`translate(${b.x} ${b.y})`);$('ball').setAttribute('cx',a.x);$('ball').setAttribute('cy',a.y-20);}
+function stopAnim(){
+ playbackCounter++;if(playbackFrame!==null&&typeof cancelAnimationFrame==='function')cancelAnimationFrame(playbackFrame);
+ playbackFrame=null;anim=null;playback=null;
+ $('flight').classList.add('hide');$('flight').style.stroke='';$('ring').classList.add('hide');$('movement').classList.add('hide');$('flightShadow').classList.add('hide');
+ $('shotHistory').replaceChildren();$('pausePlayback').classList.add('hide');$('pausePlayback').setAttribute('aria-pressed','false');$('pausePlayback').textContent='⏸ Pause';
+ $('playbackStep').textContent='Ready to watch';$('playbackStatus').textContent='Press Watch full pattern to see each shot travel, clear the net and bounce.';
+ setSideArc(shotGeometry('Topspin',1));$('sideBall').setAttribute('cx','27');$('sideBall').setAttribute('cy','124');$('sideBallShadow').setAttribute('cx','27');
+}
+function playSegments(segments,bad=false){
+ stopAnim();if(!segments.length)return;
+ const token=++playbackCounter;
+ playback={token,segments,index:0,elapsed:0,last:null,paused:false,bad};
+ $('pausePlayback').classList.remove('hide');$('pausePlayback').textContent='⏸ Pause';
+ const advance=(time)=>{
+  if(!playback||playback.token!==token)return;
+  let p=playback;
+  if(p.last===null)p.last=time;
+  const dt=Math.min(60,Math.max(0,time-p.last));p.last=time;
+  if(!p.paused)p.elapsed+=dt*Number($('playbackSpeed').value||1);
+  let seg=p.segments[p.index];
+  if(!seg){finishPlayback();return;}
+  if(!seg.started){seg.started=true;
+   if(seg.step)resetBallForStep(seg.step);
+   setSideArc(shotGeometry(seg.shot,seg.zone,seg.reply),seg.reply?'#8bd5e8':bad?'#ffa786':'#d7f989');
+   $('playbackStep').textContent=seg.label;
+   $('playbackStatus').textContent=seg.description;
+   $('ring').classList.add('hide');
+   if(seg.step&&!seg.reply){const opp=opponentPoint(seg.step),x=lerp(opp.x,seg.to.x,.6),y=lerp(opp.y,seg.to.y,.23);
+     $('movement').setAttribute('d',`M${opp.x} ${opp.y} L${x} ${y}`);$('movement').classList.remove('hide');}
+  }
+  const t=clamp01(p.elapsed/seg.duration),geo=shotGeometry(seg.shot,seg.zone,seg.reply);
+  updateBall(seg.from,seg.to,t,geo,seg.reply);
+  if(t>=1){
+   if(!seg.recorded){drawHistory(seg.from,seg.to,seg.reply);seg.recorded=true;
+    if(!seg.reply){$('ring').setAttribute('cx',seg.to.x);$('ring').setAttribute('cy',seg.to.y);$('ring').classList.remove('hide');$('ring').classList.toggle('bad',bad);} }
+   if(p.elapsed>=seg.duration+seg.hold){p.index++;p.elapsed=0; if(p.index>=p.segments.length){finishPlayback();return;}}
+  }
+  playbackFrame=requestAnimationFrame(advance);
+ };
+ playbackFrame=requestAnimationFrame(advance);
+}
+function finishPlayback(){if(!playback)return;playback=null;playbackFrame=null;$('pausePlayback').classList.add('hide');$('playbackStep').textContent='✓ Replay finished';$('playbackStatus').textContent='Look for the cue, the landing target and where the next shot goes. Replay at a slower speed if needed.';}
+function buildPatternTimeline(pattern){
+ const list=[];pattern.steps.forEach((s,i)=>{
+  const a=fromPoint(s),to=ZONES[s.zone];
+  list.push({from:{x:a.x,y:a.y-20},to:{x:to.x,y:to.y},shot:s.shot,zone:s.zone,step:s,reply:false,duration:1150,hold:450,label:`${i+1} / ${pattern.steps.length} · ${s.shot} → ${to.name}`,description:s.title+' — '+s.hint});
+  if(i<pattern.steps.length-1){const next=pattern.steps[i+1],b=fromPoint(next);
+   list.push({from:{x:to.x,y:to.y},to:{x:b.x,y:b.y-20},shot:'Drive',zone:s.zone,step:null,reply:true,duration:830,hold:270,label:`Opponent replies · preparing shot ${i+2}`,description:'Illustrative return between teaching situations. Watch how you prepare for the next shot.'});}
+ });return list;
+}
+function watchCurrentPattern(){if(mode==='match'||mode==='groove'||!entries.length)return;playSegments(buildPatternTimeline(PATTERNS[active]));}
+function showFlight(z,correct){
+ const s=currentStep(),p=fromPoint(s),dest=ZONES[z];
+ playSegments([{from:{x:p.x,y:p.y-20},to:{x:dest.x,y:dest.y},shot:selectedShot||s.shot,zone:z,step:s,reply:false,duration:1200,hold:350,label:`Your shot · ${selectedShot||s.shot} → ${dest.name}`,description:correct?'Correct! Notice where it travels and bounces.':'Compare your choice with the preferred target in the feedback.'}],!correct);
+}
+function pauseOrResume(){if(!playback)return;playback.paused=!playback.paused;playback.last=null;$('pausePlayback').textContent=playback.paused?'▶ Resume':'⏸ Pause';$('pausePlayback').setAttribute('aria-pressed',String(playback.paused));}
 function render(){buildFilters();listLessons();
  document.querySelectorAll('[data-mode]').forEach(b=>{const on=b.dataset.mode===mode;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
  $('mastered').textContent=Object.values(data.best).filter(b=>b.score>=80).length+'/'+PATTERNS.length;$('xp').textContent=String(data.xp);
@@ -295,6 +421,9 @@ function render(){buildFilters();listLessons();
  $('hint').classList.toggle('hide',usedHint||answered||done);$('hint').textContent=mode==='study'?'Reveal ideal shot and target':'Reveal answer (reduces XP)';
  $('feedback').classList.toggle('hide',!answered||done);$('next').classList.toggle('hide',!answered||done);$('next').textContent=pointer===entries.length-1?'View session results →':'Next decision →';
  $('chooseCard').classList.toggle('hide',done);$('coach').classList.toggle('hide',done);$('actions').classList.toggle('hide',done);$('complete').classList.toggle('hide',!done);
+ $('watchPattern').disabled=mode!=='study'||done;
+ $('watchPattern').textContent=mode==='study'?'▶ Watch full pattern':'🔒 Watch in Learn mode';
+ $('replayShot').classList.toggle('hide',!answered||done);
  $('practiceTitle').textContent=p.title;$('practiceText').textContent=p.practice;
  $('sourceLine').textContent='Memory tip: visualise the whole sequence, say it aloud, and repeat it with a partner.';
  if(done)renderComplete();
@@ -335,6 +464,9 @@ $('search').addEventListener('input',e=>{search=e.target.value.trim().toLowerCas
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>changeMode(b.dataset.mode)));
 $('hint').addEventListener('click',()=>{if(!answered&&!done){usedHint=true;render();}});
 $('next').addEventListener('click',next);$('restart').addEventListener('click',buildEntries);
+$('watchPattern').addEventListener('click',watchCurrentPattern);
+$('replayShot').addEventListener('click',()=>{if(answered&&!done&&lastZone!==null)showFlight(lastZone,selectedShot===currentStep().shot&&lastZone===currentStep().zone);});
+$('pausePlayback').addEventListener('click',pauseOrResume);
 $('safeToggle').addEventListener('change',e=>$('safeOverlay').classList.toggle('hide',!e.target.checked));
 document.addEventListener('keydown',e=>{if(appView!=='arena')return;if(e.ctrlKey||e.metaKey||e.altKey||e.target.closest('input,select,textarea,button,[role="button"]'))return;
  if(/^[1-9]$/.test(e.key)&&!answered&&!done){selectedShot=SHOTS[Number(e.key)-1];render();return;}
@@ -441,7 +573,7 @@ const ESSENTIAL_CARDS=[
 let appView='beginner',starterStep=0,starterAnswer=null,starterWrong=false,glossaryFilter='All',glossarySearch='',expandedTerms=new Set(),balance='yes',ballType='deep';
 let memoryDeck='essentials',memoryQueue=[],memoryCurrent=null,memoryRevealed=false,memoryVisited=new Set();
 function foundations(){if(!data.foundations||typeof data.foundations!=='object')data.foundations={};return data.foundations;}
-function setView(which,scroll=true){if(!['beginner','glossary','memory','arena'].includes(which))which='beginner';appView=which;data.lastView=which;save();
+function setView(which,scroll=true){if(!['beginner','glossary','memory','arena'].includes(which))which='beginner';if(which!=='arena'&&appView==='arena')stopAnim();appView=which;data.lastView=which;save();
  for(const part of ['beginner','glossary','memory','arena'])$('view'+part[0].toUpperCase()+part.slice(1)).classList.toggle('hide',part!==which);
  document.querySelectorAll('[data-view]').forEach(b=>{const on=b.dataset.view===which;b.classList.toggle('selected',on);b.setAttribute('aria-pressed',String(on));});
  if(which==='beginner')renderStarter();if(which==='glossary')renderDictionary();if(which==='memory')renderMemory();if(which==='arena')render();
@@ -482,6 +614,7 @@ function renderPatternMemory(){const p=currentPattern();if(!p)return;const m=MOT
  $('roadmap').addEventListener('click',e=>{const b=e.target.closest('[data-stage]');if(b)changeStarter(Number(b.dataset.stage));});
  $('starterQuestion').addEventListener('click',e=>{const b=e.target.closest('[data-quiz]');if(b)answerStarter(Number(b.dataset.quiz));});
  $('starterPrev').addEventListener('click',()=>changeStarter(starterStep-1));
+ document.querySelector('[data-watch-beginner]').addEventListener('click',()=>{category='all';style='all';search='';$('style').value='all';$('search').value='';active=0;mode='study';buildEntries();setView('arena');watchCurrentPattern();});
  $('starterNext').addEventListener('click',()=>{if(starterStep===FOUNDATION.length-1){category='all';style='all';search='';$('style').value='all';$('search').value='';active=0;mode='study';buildEntries();setView('arena');}else changeStarter(starterStep+1);});
  document.querySelectorAll('[data-balance]').forEach(b=>b.addEventListener('click',()=>{balance=b.dataset.balance;updateDecision();}));
  document.querySelectorAll('[data-ball]').forEach(b=>b.addEventListener('click',()=>{ballType=b.dataset.ball;updateDecision();}));
